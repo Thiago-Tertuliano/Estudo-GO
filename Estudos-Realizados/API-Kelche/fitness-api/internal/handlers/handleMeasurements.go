@@ -14,8 +14,8 @@ Conceitos importantes:
 */
 
 import (
-	"fitness-api/models"     // Estruturas de dados (Measurements)
-	"fitness-api/repositories" // Funções de acesso ao banco de dados
+	"fitness-api/internal/models"     // Estruturas de dados (Measurements)
+	"fitness-api/internal/repositories" // Funções de acesso ao banco de dados
 	"net/http"               // Constantes HTTP (StatusOK, StatusBadRequest, etc.)
 	"strconv"                // Para converter strings em números
 

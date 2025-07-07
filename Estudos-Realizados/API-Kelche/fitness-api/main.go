@@ -13,11 +13,12 @@ O que este arquivo faz:
 */
 
 import (
-	"fitness-api/handlers" // Pacote que contém todas as funções que respondem às requisições HTTP
-	"fitness-api/storage"  // Pacote que gerencia a conexão com o banco de dados
+	"fitness-api/internal/handlers" // Pacote que contém todas as funções que respondem às requisições HTTP
+	"fitness-api/db"  // Pacote que gerencia a conexão com o banco de dados
 
 	"github.com/labstack/echo/v4"            // Framework web Echo - facilita a criação de APIs REST
 	"github.com/labstack/echo/v4/middleware" // Middlewares do Echo - funcionalidades extras para o servidor
+	"fmt"
 )
 
 // Função main() é obrigatória em Go - é onde a execução do programa começa
