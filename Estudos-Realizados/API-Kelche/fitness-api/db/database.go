@@ -44,7 +44,7 @@ func ConnectDB() {
 	host := getEnv("DB_HOST", "localhost")     // Endereço do servidor PostgreSQL
 	port := getEnv("DB_PORT", "5432")          // Porta padrão do PostgreSQL
 	user := getEnv("DB_USER", "postgres")      // Usuário do banco
-	password := getEnv("DB_PASSWORD", "postgres") // Senha do usuário
+	password := getEnv("DB_PASSWORD", "123456") // Senha do usuário
 	dbname := getEnv("DB_NAME", "postgres")    // Nome do banco de dados
 
 	// ===== STRING DE CONEXÃO =====

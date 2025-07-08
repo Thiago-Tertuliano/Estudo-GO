@@ -13,8 +13,8 @@ Conceitos importantes:
 */
 
 import (
-	"fitness-api/models" // Estruturas de dados (Measurements)
-	"fitness-api/storage" // Conexão com o banco de dados
+	"fitness-api/internal/models" // Estruturas de dados (Measurements)
+	"fitness-api/db" // Conexão com o banco de dados
 	"time"                // Para trabalhar com datas e horários
 )
 
