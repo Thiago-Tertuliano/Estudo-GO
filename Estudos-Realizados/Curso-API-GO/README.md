@@ -785,7 +785,7 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 ```
 MIT License
 
-Copyright (c) 2024 Seu Nome
+Copyright (c) 2025 Thiago Matos Tertuliano
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -813,9 +813,9 @@ SOFTWARE.
 ### 🆘 Como Obter Ajuda
 
 - **📖 Documentação**: Leia este README completamente
-- **🐛 Issues**: Abra uma [issue](https://github.com/seu-usuario/curso-api-go/issues) no GitHub
-- **💬 Discussões**: Use as [discussions](https://github.com/seu-usuario/curso-api-go/discussions) do GitHub
-- **📧 Email**: Entre em contato via email (se disponível)
+- **🐛 Issues**: Abra uma [issue](https://github.com/thiago-tertuliano/curso-api-go/issues) no GitHub
+- **💬 Discussões**: Use as [discussions](https://github.com/thiago-tertuliano/curso-api-go/discussions) do GitHub
+- **📧 Email**: Entre em contato via email (thiagomatostertuliano@gmail.com)
 
 ### 🔗 Links Úteis
 
@@ -830,6 +830,6 @@ SOFTWARE.
 
 **⭐ Se este projeto te ajudou, considere dar uma estrela no GitHub!**
 
-Feito com ❤️ por [Seu Nome](https://github.com/seu-usuario)
+Feito com ❤️ por Thiago Matos Tertuliano (https://github.com/thiago-tertuliano)
 
 </div> 
