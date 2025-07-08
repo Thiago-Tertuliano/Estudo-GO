@@ -1,0 +1,45 @@
+# Binários
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Arquivos de teste
+*.test
+*.out
+
+# Arquivos de cobertura
+*.cover
+
+# Dependências
+vendor/
+
+# Arquivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Arquivos temporários
+tmp/
+temp/
+
+# Arquivos de ambiente
+.env
+.env.local
+
+# Arquivos de configuração local (não commitar configurações reais)
+config.toml
+config.local.toml
+
+# Arquivos de build
+api-todo
+curso-api-go
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db 
