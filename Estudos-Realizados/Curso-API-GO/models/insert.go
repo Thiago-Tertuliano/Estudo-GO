@@ -1,8 +1,6 @@
 package models
 
 import (
-	"curso-api-go/DB"
-	"curso-api-go/configs"
 	"database/sql"
 )
 
