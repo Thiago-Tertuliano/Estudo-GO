@@ -23,25 +23,25 @@ Aqui a progressão é **uso em sistema**: lifecycle, pools, pipelines, shutdown 
 | Mutex só no exercício de race | Estado compartilhado **mínimo**; preferir fluxo por canais |
 | `go func()` sem tratar erro | Erro propagado (`errgroup`, canal de erros, logs) |
 
-## Conteúdo (estrutura prevista)
+## Conteúdo
 
 | Item | Descrição |
 |------|-----------|
 | [`docs/`](docs/) | Notas em Markdown (conceitos, padrões, armadilhas) |
 | [`examples/`](examples/) | Programas pequenos por tema (`go run ./examples/...`) |
 
-### Trilha sugerida (`docs/`)
+### Documentação (`docs/`)
 
-1. Por que não spawn infinito — custo, scheduler, quando **não** usar goroutine
-2. Context e cancelamento — `Done()`, timeout, request HTTP cancelada
-3. WaitGroup e errgroup — esperar trabalho; falha em uma tarefa para as outras
-4. Worker pool e backpressure — canal com buffer, N workers fixos
-5. Pipeline e fan-out/fan-in — estágios encadeados com limite
-6. Mutex, atomic e canais — quando escolher cada um
-7. Leaks e debugging — goroutine presa, `-race`, pprof
-8. Shutdown gracioso — SIGTERM, cancel, fechar recursos
+Índice: [`docs/README.md`](docs/README.md).
 
-Índice da pasta docs: [`docs/README.md`](docs/README.md) (quando existir).
+1. [Por que não spawn infinito](docs/01-por-que-nao-spawn-infinito.md)
+2. [Context e cancelamento](docs/02-context-e-cancelamento.md)
+3. [WaitGroup e errgroup](docs/03-waitgroup-e-errgroup.md)
+4. [Worker pool e backpressure](docs/04-worker-pool-e-backpressure.md)
+5. [Pipeline e fan-out/fan-in](docs/05-pipeline-e-fan-out-fan-in.md)
+6. [Mutex, atomic e canais](docs/06-mutex-atomic-e-canais.md)
+7. [Leaks e debugging](docs/07-leaks-e-debugging.md)
+8. [Shutdown gracioso](docs/08-shutdown-gracioso.md)
 
 ### Exemplos (`examples/`)
 
@@ -64,8 +64,8 @@ Aqui a progressão é **uso em sistema**: lifecycle, pools, pipelines, shutdown 
 ## Comandos úteis
 
 ```powershell
-cd examples\<nome-do-exemplo>
-go run .
+go run ./examples/01-context-cancel
+# ou: cd examples\<nome-do-exemplo> && go run .
 
 # Detectar data race
 go test -race ./...
