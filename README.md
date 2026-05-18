@@ -9,7 +9,7 @@
 
 **Repositório completo de estudos e projetos em Go - Do básico ao avançado**
 
-[🎯 Visão Geral](#-visão-geral) • [📁 Estrutura](#-estrutura) • [🚀 Projetos](#-projetos) • [📖 Conceitos](#-conceitos) • [🔧 Como Usar](#-como-usar)
+[🎯 Visão Geral](#-visão-geral) • [📁 Estrutura](#-estrutura) • [🚀 Projetos](#-projetos) • [⚡ Goroutines](#4--goroutines--concorrência-aplicada-profissional) • [📖 Conceitos](#-conceitos) • [🔧 Como Usar](#-como-usar)
 
 </div>
 
@@ -20,9 +20,10 @@
 Este repositório contém uma **jornada completa de aprendizado em Go**, desde os conceitos fundamentais até o desenvolvimento de APIs RESTful completas. Os estudos estão organizados de forma progressiva, permitindo uma evolução natural do conhecimento.
 
 ### 📊 Estatísticas dos Estudos
-- **3 Projetos Principais** desenvolvidos
-- **100+ Exercícios** práticos
-- **50+ Conceitos** fundamentais abordados
+- **3 Projetos de API** desenvolvidos (`Estudos-Realizados/`)
+- **1 Trilha de concorrência** aplicada ([`Goroutines/`](Goroutines/))
+- **100+ Exercícios** práticos no curso base
+- **8 capítulos** de documentação em Goroutines + **5 exemplos** executáveis
 - **3 APIs RESTful** implementadas
 - **Arquiteturas diferentes** exploradas
 
@@ -31,10 +32,14 @@ Este repositório contém uma **jornada completa de aprendizado em Go**, desde o
 ## 📁 Estrutura do Repositório
 
 ```
-Estudos-Realizados/
-├── 📚 Curso_Aprenda_GO/          # Fundamentos e exercícios práticos
-├── 🚀 Curso-API-GO/              # API Todo com Chi Router
-└── 🏋️ API-Kelche/                # API Fitness com Echo Framework
+Estudo-GO/
+├── Goroutines/                   # Concorrência aplicada (docs + examples)
+│   ├── docs/                     # 8 capítulos em Markdown
+│   └── examples/                 # 01-context-cancel … 05-graceful-shutdown
+└── Estudos-Realizados/
+    ├── Curso_Aprenda_GO/         # Fundamentos e exercícios práticos
+    ├── Curso-API-GO/             # API Todo com Chi Router
+    └── API-Kelche/               # API Fitness com Echo Framework
 ```
 
 ---
@@ -67,7 +72,8 @@ Estudos-Realizados/
 - **WaitGroups** - Sincronização
 - **Mutex e Atomic** - Controle de acesso
 - **Select** - Multiplexação de canais
-- **Context** - Cancelamento e timeouts
+- **Context** - Cancelamento e timeouts  
+- **Aprofundamento:** trilha profissional em [`Goroutines/`](Goroutines/)
 
 ##### **🛠️ Ferramentas e Testes**
 - **Testes Unitários** - Testes automatizados
@@ -169,6 +175,41 @@ DELETE /measurements/:id         # Deletar medição
 
 ---
 
+### 4. ⚡ **Goroutines** — Concorrência aplicada (profissional)
+
+**Objetivo:** Ir além dos exercícios do curso (race, mutex, 50k goroutines) e fixar padrões usados em **APIs**, **workers** e **batch/ETL**: `context`, worker pool, pipeline, `errgroup`, shutdown gracioso.
+
+#### 📁 **Estrutura:**
+```
+Goroutines/
+├── README.md
+├── go.mod
+├── docs/                         # Trilha 01–08
+└── examples/
+    ├── 01-context-cancel/
+    ├── 02-worker-pool/
+    ├── 03-errgroup/
+    ├── 04-pipeline/
+    └── 05-graceful-shutdown/
+```
+
+#### 📚 **Documentação:** [Goroutines/docs/README.md](Goroutines/docs/README.md)
+
+| # | Tema |
+|---|------|
+| 1 | Por que não spawn infinito |
+| 2 | Context e cancelamento |
+| 3 | WaitGroup e errgroup |
+| 4 | Worker pool e backpressure |
+| 5 | Pipeline e fan-out / fan-in |
+| 6 | Mutex, atomic e canais |
+| 7 | Leaks e debugging (`-race`, pprof) |
+| 8 | Shutdown gracioso |
+
+**Relação com o curso:** fundamentos em `Curso_Aprenda_GO` (aulas 126, 139, canais); esta trilha foca **uso em sistema**.
+
+---
+
 ## 📖 Conceitos Aprendidos
 
 ### 🔤 **Fundamentos da Linguagem**
@@ -186,11 +227,12 @@ DELETE /measurements/:id         # Deletar medição
 5. **Ponteiros** - Referências de memória
 
 ### ⚡ **Concorrência**
-1. **Goroutines** - Execução concorrente
+1. **Goroutines** - Execução concorrente (curso + [trilha Goroutines](Goroutines/))
 2. **Canais** - Comunicação entre goroutines
 3. **Sincronização** - WaitGroups, Mutex, Atomic
-4. **Padrões** - Worker pools, fan-out/fan-in
-5. **Context** - Cancelamento e timeouts
+4. **Padrões** - Worker pools, pipeline, fan-out/fan-in, errgroup
+5. **Context** - Cancelamento, timeout, shutdown gracioso
+6. **Qualidade** - `go test -race`, prevenção de goroutine leak
 
 ### 🛠️ **Desenvolvimento Web**
 1. **HTTP/HTTPS** - Protocolos web
@@ -271,6 +313,23 @@ psql -d fitness_api -f schema.sql
 go run main.go
 ```
 
+#### **Goroutines** (trilha de concorrência)
+```bash
+cd Goroutines
+go mod tidy
+
+# Exemplos (ordem sugerida)
+go run ./examples/01-context-cancel
+go run ./examples/02-worker-pool
+go run ./examples/03-errgroup
+go run ./examples/04-pipeline
+go run ./examples/05-graceful-shutdown   # Ctrl+C para testar shutdown
+
+go test -race ./...   # quando houver testes no módulo
+```
+
+Documentação: [Goroutines/README.md](Goroutines/README.md) · [docs/](Goroutines/docs/README.md)
+
 ---
 
 ## 📈 Progresso de Aprendizado
@@ -290,11 +349,12 @@ go run main.go
 - [x] Testes unitários
 
 ### 🎯 **Nível Avançado** ✅
-- [x] Concorrência com goroutines
+- [x] Concorrência com goroutines (curso)
 - [x] Canais e sincronização
 - [x] Desenvolvimento de APIs REST
 - [x] Integração com banco de dados
 - [x] Arquitetura de software
+- [x] Trilha **Goroutines** — context, pool, pipeline, errgroup, shutdown ([docs](Goroutines/docs/README.md))
 
 ### 🎯 **Nível Expert** ✅
 - [x] Padrões de projeto
@@ -316,9 +376,10 @@ go run main.go
 - ✅ Arquitetura de software
 
 ### 🚀 **Projetos Concluídos**
-- ✅ **100+ Exercícios** práticos
+- ✅ **100+ Exercícios** práticos (Curso Aprenda Go)
 - ✅ **API Todo** com Chi Router
 - ✅ **API Fitness** com Echo Framework
+- ✅ **Trilha Goroutines** — 5 exemplos + 8 capítulos de documentação
 - ✅ **Padrões de projeto** implementados
 - ✅ **Testes automatizados** escritos
 
@@ -344,6 +405,7 @@ go run main.go
 - "The Go Programming Language" - Alan Donovan & Brian Kernighan
 - "Go in Action" - William Kennedy
 - "Concurrency in Go" - Katherine Cox-Buday
+- Trilha local: [Goroutines/docs](Goroutines/docs/README.md)
 
 ### 🎥 **Cursos Online**
 - [Aprenda Go](https://www.youtube.com/playlist?list=PLCKpcjBB_VlBsxJ9IseNxFllf-UFEXOdg)
