@@ -9,7 +9,7 @@
 
 **Repositório completo de estudos e projetos em Go - Do básico ao avançado**
 
-[🎯 Visão Geral](#-visão-geral) • [📁 Estrutura](#-estrutura) • [🚀 Projetos](#-projetos) • [⚡ Goroutines](#4--goroutines--concorrência-aplicada-profissional) • [📖 Conceitos](#-conceitos) • [🔧 Como Usar](#-como-usar)
+[🎯 Visão Geral](#-visão-geral) • [📁 Estrutura](#-estrutura) • [🚀 Projetos](#-projetos) • [⚡ Goroutines](#4--goroutines--concorrência-aplicada-profissional) • [📡 Channels](#5--channels--canais-aplicados) • [📖 Conceitos](#-conceitos) • [🔧 Como Usar](#-como-usar)
 
 </div>
 
@@ -21,9 +21,9 @@ Este repositório contém uma **jornada completa de aprendizado em Go**, desde o
 
 ### 📊 Estatísticas dos Estudos
 - **3 Projetos de API** desenvolvidos (`Estudos-Realizados/`)
-- **1 Trilha de concorrência** aplicada ([`Goroutines/`](Goroutines/))
+- **2 Trilhas de concorrência** ([`Goroutines/`](Goroutines/), [`Channels/`](Channels/))
 - **100+ Exercícios** práticos no curso base
-- **8 capítulos** de documentação em Goroutines + **5 exemplos** executáveis
+- **15 capítulos** de documentação (8 Goroutines + 7 Channels) + **12 exemplos** executáveis
 - **3 APIs RESTful** implementadas
 - **Arquiteturas diferentes** exploradas
 
@@ -34,8 +34,11 @@ Este repositório contém uma **jornada completa de aprendizado em Go**, desde o
 ```
 Estudo-GO/
 ├── Goroutines/                   # Concorrência aplicada (docs + examples)
-│   ├── docs/                     # 8 capítulos em Markdown
-│   └── examples/                 # 01-context-cancel … 05-graceful-shutdown
+│   ├── docs/                     # 8 capítulos
+│   └── examples/                 # 01 … 05
+├── Channels/                     # Canais (docs + examples)
+│   ├── docs/                     # 7 capítulos
+│   └── examples/                 # 01 … 07
 └── Estudos-Realizados/
     ├── Curso_Aprenda_GO/         # Fundamentos e exercícios práticos
     ├── Curso-API-GO/             # API Todo com Chi Router
@@ -68,12 +71,12 @@ Estudo-GO/
 
 ##### **⚡ Concorrência**
 - **Goroutines** - Execução concorrente
-- **Canais** - Comunicação entre goroutines
+- **Canais** - Comunicação entre goroutines ([trilha Channels](Channels/))
 - **WaitGroups** - Sincronização
 - **Mutex e Atomic** - Controle de acesso
 - **Select** - Multiplexação de canais
 - **Context** - Cancelamento e timeouts  
-- **Aprofundamento:** trilha profissional em [`Goroutines/`](Goroutines/)
+- **Aprofundamento:** trilhas [`Goroutines/`](Goroutines/) e [`Channels/`](Channels/)
 
 ##### **🛠️ Ferramentas e Testes**
 - **Testes Unitários** - Testes automatizados
@@ -210,6 +213,38 @@ Goroutines/
 
 ---
 
+### 5. 📡 **Channels** — Canais aplicados (profissional)
+
+**Objetivo:** Dominar **semântica de canais**: buffer, `close`, direção, `select`, fan-in e armadilhas — complemento direto de [Goroutines/](Goroutines/).
+
+#### 📁 **Estrutura:**
+```
+Channels/
+├── README.md
+├── go.mod
+├── docs/                         # Trilha 01–07
+└── examples/
+    ├── 01-basics/
+    ├── 02-buffered/
+    ├── … 07-fan-in/
+```
+
+#### 📚 **Documentação:** [Channels/docs/README.md](Channels/docs/README.md)
+
+| # | Tema |
+|---|------|
+| 1 | O que é um canal |
+| 2 | Buffered vs unbuffered |
+| 3 | Close, range e sinais |
+| 4 | Canais direcionais |
+| 5 | Select |
+| 6 | Padrões em produção |
+| 7 | Armadilhas e leaks |
+
+**Ordem sugerida:** Channels `01`–`05` → Goroutines pool/pipeline → Channels `06`–`07`.
+
+---
+
 ## 📖 Conceitos Aprendidos
 
 ### 🔤 **Fundamentos da Linguagem**
@@ -228,7 +263,7 @@ Goroutines/
 
 ### ⚡ **Concorrência**
 1. **Goroutines** - Execução concorrente (curso + [trilha Goroutines](Goroutines/))
-2. **Canais** - Comunicação entre goroutines
+2. **Canais** - Comunicação entre goroutines ([trilha Channels](Channels/))
 3. **Sincronização** - WaitGroups, Mutex, Atomic
 4. **Padrões** - Worker pools, pipeline, fan-out/fan-in, errgroup
 5. **Context** - Cancelamento, timeout, shutdown gracioso
@@ -330,6 +365,15 @@ go test -race ./...   # quando houver testes no módulo
 
 Documentação: [Goroutines/README.md](Goroutines/README.md) · [docs/](Goroutines/docs/README.md)
 
+#### **Channels** (canais)
+```bash
+cd Channels
+go run ./examples/01-basics
+# … até 07-fan-in
+```
+
+Documentação: [Channels/README.md](Channels/README.md) · [docs/](Channels/docs/README.md)
+
 ---
 
 ## 📈 Progresso de Aprendizado
@@ -355,6 +399,7 @@ Documentação: [Goroutines/README.md](Goroutines/README.md) · [docs/](Goroutin
 - [x] Integração com banco de dados
 - [x] Arquitetura de software
 - [x] Trilha **Goroutines** — context, pool, pipeline, errgroup, shutdown ([docs](Goroutines/docs/README.md))
+- [x] Trilha **Channels** — buffer, close, select, fan-in ([docs](Channels/docs/README.md))
 
 ### 🎯 **Nível Expert** ✅
 - [x] Padrões de projeto
@@ -379,7 +424,8 @@ Documentação: [Goroutines/README.md](Goroutines/README.md) · [docs/](Goroutin
 - ✅ **100+ Exercícios** práticos (Curso Aprenda Go)
 - ✅ **API Todo** com Chi Router
 - ✅ **API Fitness** com Echo Framework
-- ✅ **Trilha Goroutines** — 5 exemplos + 8 capítulos de documentação
+- ✅ **Trilha Goroutines** — 5 exemplos + 8 capítulos
+- ✅ **Trilha Channels** — 7 exemplos + 7 capítulos
 - ✅ **Padrões de projeto** implementados
 - ✅ **Testes automatizados** escritos
 
@@ -405,7 +451,7 @@ Documentação: [Goroutines/README.md](Goroutines/README.md) · [docs/](Goroutin
 - "The Go Programming Language" - Alan Donovan & Brian Kernighan
 - "Go in Action" - William Kennedy
 - "Concurrency in Go" - Katherine Cox-Buday
-- Trilha local: [Goroutines/docs](Goroutines/docs/README.md)
+- Trilhas locais: [Goroutines/docs](Goroutines/docs/README.md) · [Channels/docs](Channels/docs/README.md)
 
 ### 🎥 **Cursos Online**
 - [Aprenda Go](https://www.youtube.com/playlist?list=PLCKpcjBB_VlBsxJ9IseNxFllf-UFEXOdg)
