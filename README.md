@@ -17,7 +17,7 @@
 
 ## 🎯 Visão Geral
 
-Este repositório contém uma **jornada completa de aprendizado em Go**, desde os conceitos fundamentais até o desenvolvimento de APIs RESTful completas. Os estudos estão organizados de forma progressiva, permitindo uma evolução natural do conhecimento.
+Este repositório contém uma **jornada completa de aprendizado em Go**, desde os conceitos fundamentais até o desenvolvimento de APIs RESTful completas. Além dos projetos em `Estudos-Realizados/`, há **trilhas profissionais de concorrência** ([Goroutines/](Goroutines/), [Channels/](Channels/)) com documentação em Markdown e exemplos executáveis.
 
 ### 📊 Estatísticas dos Estudos
 - **3 Projetos de API** desenvolvidos (`Estudos-Realizados/`)
@@ -45,9 +45,18 @@ Estudo-GO/
     └── API-Kelche/               # API Fitness com Echo Framework
 ```
 
+### Mapa rápido — trilhas de concorrência
+
+| Trilha | README | Docs | Exemplos | Foco |
+|--------|--------|------|----------|------|
+| [Goroutines/](Goroutines/) | [README](Goroutines/README.md) | [8 capítulos](Goroutines/docs/README.md) | `01`–`05` | `context`, pool, pipeline, errgroup, shutdown |
+| [Channels/](Channels/) | [README](Channels/README.md) | [7 capítulos](Channels/docs/README.md) | `01`–`07` | buffer, `close`, `select`, fan-in, armadilhas |
+
+**Ordem sugerida:** curso (aulas 126, 139, 146+) → Channels `01`–`05` → Goroutines `01`–`05` → Channels `06`–`07` → Goroutines docs `06`–`08`.
+
 ---
 
-## 🚀 Projetos Desenvolvidos
+## 🚀 Projetos e trilhas
 
 ### 1. 📚 **Curso_Aprenda_GO** - Fundamentos Completos
 **Objetivo:** Aprender os conceitos fundamentais da linguagem Go através de exercícios práticos.
@@ -226,7 +235,11 @@ Channels/
 └── examples/
     ├── 01-basics/
     ├── 02-buffered/
-    ├── … 07-fan-in/
+    ├── 03-close-range/
+    ├── 04-directional/
+    ├── 05-select-timeout/
+    ├── 06-select-quit/
+    └── 07-fan-in/
 ```
 
 #### 📚 **Documentação:** [Channels/docs/README.md](Channels/docs/README.md)
@@ -295,12 +308,14 @@ Channels/
 ## 🔧 Como Usar
 
 ### 📋 **Pré-requisitos**
-- **Go 1.21+** instalado
-- **PostgreSQL** (para os projetos de API)
+- **Go 1.21+** instalado (trilhas `Goroutines/` e `Channels/` usam módulos próprios; `go mod tidy` em cada pasta)
+- **PostgreSQL** (para os projetos de API em `Estudos-Realizados/`)
 - **Git** para controle de versão
 - **Editor de código** (VS Code, GoLand, etc.)
 
-### 🚀 **Executando os Exercícios**
+Todos os comandos abaixo assumem que você está na raiz **`Estudo-GO/`**.
+
+### 🚀 **Executando os estudos**
 
 #### **Curso_Aprenda_GO**
 ```bash
@@ -368,11 +383,27 @@ Documentação: [Goroutines/README.md](Goroutines/README.md) · [docs/](Goroutin
 #### **Channels** (canais)
 ```bash
 cd Channels
+
 go run ./examples/01-basics
-# … até 07-fan-in
+go run ./examples/02-buffered
+go run ./examples/03-close-range
+go run ./examples/04-directional
+go run ./examples/05-select-timeout
+go run ./examples/06-select-quit
+go run ./examples/07-fan-in
+
+go run -race ./examples/07-fan-in   # opcional: detector de race
 ```
 
 Documentação: [Channels/README.md](Channels/README.md) · [docs/](Channels/docs/README.md)
+
+#### **Concorrência — leitura + código**
+| Etapa | Onde |
+|-------|------|
+| 1 | [Channels/docs/01](Channels/docs/01-o-que-e-canal.md) … [05](Channels/docs/05-select.md) + exemplos `01`–`05` |
+| 2 | [Goroutines/docs/02](Goroutines/docs/02-context-e-cancelamento.md) … [05](Goroutines/docs/05-pipeline-e-fan-out-fan-in.md) + exemplos `01`–`05` |
+| 3 | [Channels/docs/06](Channels/docs/06-padroes-producao.md)–[07](Channels/docs/07-armadilhas-e-leaks.md) + `06`–`07` |
+| 4 | [Goroutines/docs/07](Goroutines/docs/07-leaks-e-debugging.md)–[08](Goroutines/docs/08-shutdown-gracioso.md) |
 
 ---
 
