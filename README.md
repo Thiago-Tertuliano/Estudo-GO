@@ -9,7 +9,7 @@
 
 **Repositório completo de estudos e projetos em Go - Do básico ao avançado**
 
-[🎯 Visão Geral](#-visão-geral) • [📁 Estrutura](#-estrutura) • [🚀 Projetos](#-projetos) • [⚡ Goroutines](#4--goroutines--concorrência-aplicada-profissional) • [📡 Channels](#5--channels--canais-aplicados) • [🔌 Middleware](#6--middleware--http-aplicado) • [📖 Conceitos](#-conceitos) • [🔧 Como Usar](#-como-usar)
+[🎯 Visão Geral](#-visão-geral) • [📁 Estrutura](#-estrutura) • [🚀 Projetos](#-projetos) • [⚡ Goroutines](#4--goroutines--concorrência-aplicada-profissional) • [📡 Channels](#5--channels--canais-aplicados) • [🔌 Middleware](#6--middleware--http-aplicado) • [🚦 Rate-Limiting](#7--rate-limiting--limite-de-taxa-http) • [📖 Conceitos](#-conceitos) • [🔧 Como Usar](#-como-usar)
 
 </div>
 
@@ -17,13 +17,13 @@
 
 ## 🎯 Visão Geral
 
-Este repositório contém uma **jornada completa de aprendizado em Go**, desde os conceitos fundamentais até o desenvolvimento de APIs RESTful completas. Além dos projetos em `Estudos-Realizados/`, há **trilhas profissionais** ([Goroutines/](Goroutines/), [Channels/](Channels/), [Middleware/](Middleware/)) com documentação em Markdown e exemplos executáveis.
+Este repositório contém uma **jornada completa de aprendizado em Go**, desde os conceitos fundamentais até o desenvolvimento de APIs RESTful completas. Além dos projetos em `Estudos-Realizados/`, há **trilhas profissionais** ([Goroutines/](Goroutines/), [Channels/](Channels/), [Middleware/](Middleware/), [Rate-Limiting/](Rate-Limiting/)) com documentação em Markdown e exemplos executáveis.
 
 ### 📊 Estatísticas dos Estudos
 - **3 Projetos de API** desenvolvidos (`Estudos-Realizados/`)
-- **3 Trilhas aplicadas** ([`Goroutines/`](Goroutines/), [`Channels/`](Channels/), [`Middleware/`](Middleware/))
+- **4 Trilhas aplicadas** ([`Goroutines/`](Goroutines/), [`Channels/`](Channels/), [`Middleware/`](Middleware/), [`Rate-Limiting/`](Rate-Limiting/))
 - **100+ Exercícios** práticos no curso base
-- **22 capítulos** de documentação + **22 exemplos** executáveis nas trilhas
+- **29 capítulos** de documentação + **29 exemplos** executáveis nas trilhas
 - **3 APIs RESTful** implementadas
 - **Arquiteturas diferentes** exploradas
 
@@ -43,6 +43,10 @@ Estudo-GO/
 │   ├── docs/                     # 7 capítulos
 │   ├── internal/httpmw/          # logging, recover, chain, request ID
 │   └── examples/                 # 01 … 10
+├── Rate-Limiting/                # Limite de taxa HTTP (docs + examples)
+│   ├── docs/                     # 7 capítulos
+│   ├── internal/ratelimit/       # middleware global e por IP
+│   └── examples/                 # 01 … 07
 └── Estudos-Realizados/
     ├── Curso_Aprenda_GO/         # Fundamentos e exercícios práticos
     ├── Curso-API-GO/             # API Todo com Chi Router
@@ -56,8 +60,9 @@ Estudo-GO/
 | [Goroutines/](Goroutines/) | [README](Goroutines/README.md) | [8 capítulos](Goroutines/docs/README.md) | `01`–`05` | `context`, pool, pipeline, errgroup, shutdown |
 | [Channels/](Channels/) | [README](Channels/README.md) | [7 capítulos](Channels/docs/README.md) | `01`–`07` | buffer, `close`, `select`, fan-in, armadilhas |
 | [Middleware/](Middleware/) | [README](Middleware/README.md) | [7 capítulos](Middleware/docs/README.md) | `01`–`10` | `http.Handler`, chain, Chi/Echo bridge |
+| [Rate-Limiting/](Rate-Limiting/) | [README](Rate-Limiting/README.md) | [7 capítulos](Rate-Limiting/docs/README.md) | `01`–`07` | token bucket, 429, per-IP, Chi/Echo |
 
-**Ordem sugerida (concorrência + HTTP):** curso → Channels `01`–`05` → Goroutines `01`–`05` → Middleware `01`–`08` → Channels `06`–`07` + Middleware `09`–`10`.
+**Ordem sugerida (concorrência + HTTP):** curso → Channels `01`–`05` → Goroutines `01`–`05` → Middleware `01`–`08` → Rate-Limiting `01`–`05` → Channels `06`–`07` + Middleware `09`–`10` + Rate-Limiting `06`–`07`.
 
 ---
 
@@ -296,6 +301,43 @@ Middleware/
 
 ---
 
+### 7. 🚦 **Rate-Limiting** — Limite de taxa HTTP (profissional)
+
+**Objetivo:** Proteger APIs com limite de requisições por segundo, middleware **429**, limite global e por IP com `golang.org/x/time/rate`, e pontes para **Chi** e **Echo** (após [Middleware/](Middleware/)).
+
+#### 📁 **Estrutura:**
+```
+Rate-Limiting/
+├── README.md
+├── go.mod
+├── docs/                         # Trilha 01–07
+├── internal/ratelimit/           # Middleware, PerIP, fixed window
+└── examples/
+    ├── 01-token-bucket-basico/
+    ├── 02-middleware-global/
+    ├── 03-middleware-per-ip/
+    ├── 04-fixed-window-manual/
+    ├── 05-stdlib-server/
+    ├── 06-chi-bridge/
+    └── 07-echo-bridge/
+```
+
+#### 📚 **Documentação:** [Rate-Limiting/docs/README.md](Rate-Limiting/docs/README.md)
+
+| # | Tema |
+|---|------|
+| 1 | Por que rate limiting |
+| 2 | Conceitos e algoritmos |
+| 3 | Token bucket (`x/time/rate`) |
+| 4 | Middleware e HTTP 429 |
+| 5 | Limite por IP e chave |
+| 6 | Chi, Echo e produção |
+| 7 | Armadilhas (mapa em memória, cluster) |
+
+**Relação com APIs:** encaixar na chain após recover/logging ([Middleware](Middleware/docs/03-cadeia-e-ordem.md)); [Curso-API-GO](Estudos-Realizados/Curso-API-GO/main.go) e [API-Kelche](Estudos-Realizados/API-Kelche/fitness-api/README.md) ainda sem rate limit — esta trilha mostra como adicionar.
+
+---
+
 ## 📖 Conceitos Aprendidos
 
 ### 🔤 **Fundamentos da Linguagem**
@@ -325,7 +367,8 @@ Middleware/
 2. **REST APIs** - Arquitetura RESTful
 3. **JSON** - Serialização de dados
 4. **Middleware** - Interceptadores HTTP ([trilha Middleware](Middleware/))
-5. **Roteamento** - Gerenciamento de rotas
+5. **Rate limiting** - Token bucket, 429, limite por IP ([trilha Rate-Limiting](Rate-Limiting/))
+6. **Roteamento** - Gerenciamento de rotas
 
 ### 🗄️ **Banco de Dados**
 1. **PostgreSQL** - Banco relacional
@@ -456,6 +499,24 @@ go run ./examples/10-echo-bridge
 
 Documentação: [Middleware/README.md](Middleware/README.md) · [docs/](Middleware/docs/README.md)
 
+#### **Rate-Limiting** (limite de taxa)
+```bash
+cd Rate-Limiting
+go mod tidy
+go build ./...
+
+go run ./examples/01-token-bucket-basico
+go run ./examples/05-stdlib-server
+
+# Várias requisições até ver 429 (PowerShell):
+1..20 | ForEach-Object { curl.exe -s -o NUL -w "%{http_code}\n" http://localhost:8080/ }
+
+go run ./examples/06-chi-bridge
+go run ./examples/07-echo-bridge
+```
+
+Documentação: [Rate-Limiting/README.md](Rate-Limiting/README.md) · [docs/](Rate-Limiting/docs/README.md)
+
 ---
 
 ## 📈 Progresso de Aprendizado
@@ -483,6 +544,7 @@ Documentação: [Middleware/README.md](Middleware/README.md) · [docs/](Middlewa
 - [x] Trilha **Goroutines** — context, pool, pipeline, errgroup, shutdown ([docs](Goroutines/docs/README.md))
 - [x] Trilha **Channels** — buffer, close, select, fan-in ([docs](Channels/docs/README.md))
 - [x] Trilha **Middleware** — chain, logging, recover, Chi/Echo ([docs](Middleware/docs/README.md))
+- [x] Trilha **Rate-Limiting** — token bucket, 429, per-IP, Chi/Echo ([docs](Rate-Limiting/docs/README.md))
 
 ### 🎯 **Nível Expert** ✅
 - [x] Padrões de projeto
@@ -510,6 +572,7 @@ Documentação: [Middleware/README.md](Middleware/README.md) · [docs/](Middlewa
 - ✅ **Trilha Goroutines** — 5 exemplos + 8 capítulos
 - ✅ **Trilha Channels** — 7 exemplos + 7 capítulos
 - ✅ **Trilha Middleware** — 10 exemplos + 7 capítulos
+- ✅ **Trilha Rate-Limiting** — 7 exemplos + 7 capítulos
 - ✅ **Padrões de projeto** implementados
 - ✅ **Testes automatizados** escritos
 
@@ -535,7 +598,7 @@ Documentação: [Middleware/README.md](Middleware/README.md) · [docs/](Middlewa
 - "The Go Programming Language" - Alan Donovan & Brian Kernighan
 - "Go in Action" - William Kennedy
 - "Concurrency in Go" - Katherine Cox-Buday
-- Trilhas locais: [Goroutines/docs](Goroutines/docs/README.md) · [Channels/docs](Channels/docs/README.md) · [Middleware/docs](Middleware/docs/README.md)
+- Trilhas locais: [Goroutines/docs](Goroutines/docs/README.md) · [Channels/docs](Channels/docs/README.md) · [Middleware/docs](Middleware/docs/README.md) · [Rate-Limiting/docs](Rate-Limiting/docs/README.md)
 
 ### 🎥 **Cursos Online**
 - [Aprenda Go](https://www.youtube.com/playlist?list=PLCKpcjBB_VlBsxJ9IseNxFllf-UFEXOdg)
